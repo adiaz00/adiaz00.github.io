@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnold Diaz — Community & Culture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #FAFAF8;
+    --color-surface: #FFFFFF;
+    --color-text: #1A1A18;
+    --color-text-muted: #6B6B66;
+    --color-text-light: #9C9C96;
+    --color-accent: #2D6A4F;
+    --color-accent-light: #D8F3DC;
+    --color-warm: #C2847A;
+    --color-warm-light: #F5EDEB;
+    --color-border: #E8E8E4;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.04); }
+  .nav-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--color-text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+    opacity: 0.4;
+    filter: blur(80px);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: var(--color-warm-light);
+    opacity: 0.5;
+    filter: blur(80px);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 640px; }
+  .hero-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6vw, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--color-text-muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-surface);
+    background: var(--color-accent);
+    padding: 12px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(45, 106, 79, 0.25);
+  }
+  .hero-cta svg { transition: transform 0.2s; }
+  .hero-cta:hover svg { transform: translateX(3px); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1060px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    max-width: 540px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--color-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 12px;
+  }
+  .about-text p {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+  .about-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .about-detail-label {
+    font-size: 12px;
+    color: var(--color-text-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .about-detail-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+  .project-card.raices::before { background: var(--color-accent); }
+  .project-card.shelter::before { background: var(--color-warm); }
+  .project-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 22px;
+  }
+  .raices .project-icon { background: var(--color-accent-light); }
+  .shelter .project-icon { background: var(--color-warm-light); }
+  .project-card h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .project-org {
+    font-size: 13px;
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .project-card p {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .project-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .raices .project-tag {
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+  }
+  .shelter .project-tag {
+    background: var(--color-warm-light);
+    color: #8B5A50;
+  }
+
+  /* GALLERY */
+  .gallery-section { background: var(--color-surface); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .gallery-item {
+    background: var(--color-bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    font-size: 13px;
+    aspect-ratio: 1;
+    border: 1px solid var(--color-border);
+    transition: transform 0.25s;
+    overflow: hidden;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item.wide {
+    grid-column: span 2;
+    aspect-ratio: 2/1;
+  }
+  .gallery-caption {
+    font-size: 14px;
+    color: var(--color-text-light);
+    margin-top: 1.25rem;
+    font-style: italic;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .contact-text p {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover {
+    border-color: var(--color-accent);
+    transform: translateX(4px);
+  }
+  .contact-link-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-link-label {
+    font-size: 12px;
+    color: var(--color-text-light);
+    letter-spacing: 0.03em;
+  }
+  .contact-link-value {
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .get-involved {
+    background: var(--color-accent);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: white;
+  }
+  .get-involved h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+  .get-involved p {
+    font-size: 15px;
+    opacity: 0.85;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .involve-links { display: flex; flex-direction: column; gap: 10px; }
+  .involve-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+    transition: background 0.2s;
+  }
+  .involve-link:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  footer p {
+    font-size: 13px;
+    color: var(--color-text-light);
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo { max-width: 240px; aspect-ratio: 1; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.wide { grid-column: span 2; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 1.25rem; }
+    .nav-links a { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name">Arnold Diaz</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-label">Akron, Ohio</div>
+    <h1>Building community through <em>culture & care</em></h1>
+    <p>Medical student passionate about uplifting the Latino community and supporting families in need through hands-on volunteerism and advocacy.</p>
+    <a href="#projects" class="hero-cta">
+      See my work
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner fade-in">
+    <div class="section-label">About me</div>
+    <div class="about-grid">
+      <img class="about-photo" src="Diaz_Arnold.jpg" alt="Photo of me">
+      <div class="about-text">
+        <div class="section-title">A little about who I am</div>
+        <p>I'm a medical student at Northeast Ohio Medical University in Akron, Ohio, currently in my third year. I've always cared deeply about community — whether that means helping preserve cultural heritage for Latino families or supporting women and children navigating tough situations.</p>
+        <p>Outside of school and volunteering, I enjoy hiking, reading, playing my guitar, and exercising. I believe that even small acts of service can ripple outward and create real change in people's lives.</p>
+        <div class="about-details">
+          <div>
+            <div class="about-detail-label">School</div>
+            <div class="about-detail-value">Northeast Ohio Medical University</div>
+          </div>
+          <div>
+            <div class="about-detail-label">Grade</div>
+            <div class="about-detail-value">Third Year (M3)</div>
+          </div>
+          <div>
+            <div class="about-detail-label">Location</div>
+            <div class="about-detail-value">Rootstown, OH</div>
+          </div>
+          <div>
+            <div class="about-detail-label">Interests</div>
+            <div class="about-detail-value">Internal Medicine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASSION PROJECTS -->
+<section id="projects">
+  <div class="section-inner fade-in">
+    <div class="section-label">Passion projects</div>
+    <div class="section-title">What I'm working on</div>
+    <div class="section-subtitle">These are the causes and communities closest to my heart. Through each project, I'm learning what it means to show up and make a difference.</div>
+    <div class="projects-grid">
+
+      <div class="project-card raices">
+        <div class="project-icon">
+          <svg width="24" height="24" fill="none" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12A8 8 0 004 10c0 4.5 4 8 8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Proyecto RAÍCES</h3>
+        <div class="project-org">Akron, OH &middot; Nonprofit</div>
+        <p>Proyecto RAÍCES provides educational and social support to children of Latino/Hispanic families in the Akron area, helping them thrive while maintaining their cultural heritage. As a facilitator of the bi-monthly "Sábado" Program, I helped create a space where Latino and Hispanic children could learn, play, and celebrate who they are. From bilingual story time and hands-on arts and crafts to STEM workshops and healthy lifestyle activities, every session was designed to spark curiosity while keeping cultural roots alive. One of the most rewarding parts was presenting cultural programs that brought families together and strengthened community pride. Building real relationships with the children and their families keeping them informed, involved, and connected made this work deeply meaningful to me.</p>
+        <div>
+          <span class="project-tag">Cultural heritage</span>
+          <span class="project-tag">Youth education</span>
+          <span class="project-tag">Community</span>
+        </div>
+      </div>
+
+      <div class="project-card shelter">
+        <div class="project-icon">
+          <svg width="24" height="24" fill="none" stroke="#8B5A50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 9.5V19a1 1 0 001 1h12a1 1 0 001-1V9.5"/><path d="M10 20v-6h4v6"/></svg>
+        </div>
+        <h3>Women's &amp; Children's Shelter</h3>
+        <div class="project-org">[Shelter Name] &middot; Akron, OH</div>
+        <p>I'm passionate about supporting families in crisis. As a lunch meal server at Access Women's and Children's Shelter, I helped provide warm, nutritious meals to families during some of their most challenging moments. From setting up the dining area to serving guests and cleaning up afterward, every step was about creating a welcoming, dignified experience — not just handing someone a plate. What made this work special was the chance to connect with people face to face, offer a friendly presence, and be part of a team committed to showing up for our community when it matters most..</p>
+        <div>
+          <span class="project-tag">Advocacy</span>
+          <span class="project-tag">Family support</span>
+          <span class="project-tag">Volunteerism</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="section-inner fade-in">
+    <div class="section-label">Gallery</div>
+    <div class="section-title">Moments that matter</div>
+    <div class="section-subtitle">Snapshots from events, volunteer days, and community celebrations.</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">Event photo 1</div>
+      <div class="gallery-item">Photo 2</div>
+      <div class="gallery-item">Photo 3</div>
+      <div class="gallery-item">Photo 4</div>
+      <div class="gallery-item">Photo 5</div>
+      <div class="gallery-item wide">Event photo 6</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner fade-in">
+    <div class="section-label">Connect</div>
+    <div class="section-title">Get in touch</div>
+    <div class="section-subtitle">Whether you'd like to collaborate, learn more about my projects, or just say hello — I'd love to hear from you.</div>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:your.email@example.com">
+          <div class="contact-link-icon" style="background: var(--color-accent-light);">
+            <svg width="18" height="18" fill="none" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l7 5 7-5"/><rect x="1" y="3" width="16" height="12" rx="2"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">arnoldxdiaz@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/arnold-diaz-5677b149/?skipRedirect=true" target="_blank" rel="noopener">
+          <div class="contact-link-icon" style="background: #EEF3FF;">
+            <svg width="18" height="18" fill="#3B6CB5" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05a3.74 3.74 0 013.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77A1.75 1.75 0 000 1.73v20.54A1.75 1.75 0 001.77 24h20.45A1.75 1.75 0 0024 22.27V1.73A1.75 1.75 0 0022.22 0z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">https://www.linkedin.com/in/arnold-diaz</div>
+          </div>
+        </a>
+      </div>
+      <div class="get-involved">
+        <h3>Want to get involved?</h3>
+        <p>These organizations are always looking for helping hands. Whether you can donate, volunteer, or simply spread the word — every bit counts.</p>
+        <div class="involve-links">
+          <a class="involve-link" href="https://proyectoraicescla.org/" target="_blank" rel="noopener">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg>
+            Proyecto RAÍCES
+          </a>
+          <a class="involve-link" href="https://www.access-shelter.org/" target="_blank" rel="noopener">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 1v12M1 7h12"/></svg>
+            Women's &amp; Children's Shelter
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Arnold Diaz. Built with purpose in Akron, OH.</p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
