@@ -478,6 +478,49 @@
     .nav-links { gap: 1.25rem; }
     .nav-links a { font-size: 12px; }
   }
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    cursor: pointer;
+    padding: 2rem;
+  }
+  .lightbox.active {
+    display: flex;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    background: rgba(255,255,255,0.15);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+  .lightbox.active + .lightbox-close {
+    display: flex;
+  }
 </style>
 </head>
 <body>
@@ -641,7 +684,10 @@
     </div>
   </div>
 </section>
-
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Enlarged photo" id="lightbox-img">
+</div>
+<button class="lightbox-close" id="lightbox-close">&times;</button>
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2026 Arnold Diaz. Built with purpose in Akron, OH.</p>
@@ -674,6 +720,34 @@
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
+  });
+  // Lightbox for gallery
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    if (item.tagName === 'IMG') {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.src;
+        lightbox.classList.add('active');
+      });
+    }
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+  });
+
+  lightboxClose.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('active');
+    }
   });
 </script>
 
